@@ -2,6 +2,7 @@ import xml.sax
 import string
 import re
 import os
+from pronunciation import cleanPron
 
 class WiktionaryXMLHandler(xml.sax.ContentHandler):
     def __init__(self):
@@ -26,7 +27,7 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
 
     def endElement(self, name):
         if name == "text":
-            processText(self.textContent, self.title)
+            processText(self.textContent, self.title.strip())
             self.textContent = ""
 
 
@@ -37,8 +38,8 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
             self.title += content
 
 def getEnglish(raw):
-    # if no English part in text, returns empty string
-    # otherwise, returns string with raw english
+    """if no English part in text, returns empty string
+    otherwise, returns string with raw english"""
 
     substr = "==English=="
     startPos = raw.find(substr)
@@ -67,16 +68,26 @@ def getEnglish(raw):
     return raw[startPos:]
 
 def getPron(raw):
-    # receives the raw english string and returns the raw
-    # pronunciation string
-    # returns the empty string if there is no pronunciation (or
-    # the formatting of the pronunciation is unorthodox)
+    """receives the raw english string and returns the raw
+    pronunciation string
+    returns the empty string if there is no pronunciation (or
+    the formatting of the pronunciation is unorthodox)"""
 
-    substr = "===Pronunciation==="
+    # when there are multiple etymologies, they may use four =,
+    isFourE = False
+
+    substr = "====Pronunciation===="
     startPos = raw.find(substr)
-    if startPos == -1:
-        return ""
-    startPos = startPos + 19
+    if startPos != -1:
+        startPos += len(substr)
+        isFourE = True
+
+    if (not isFourE):
+        substr = "===Pronunciation==="
+        startPos = raw.find(substr)
+        if startPos == -1:
+            return ""
+        startPos += len(substr)
 
     # it stands to reason that the pronunciation is not going to be
     # the last = * = type of structure in file
@@ -88,10 +99,10 @@ def getPron(raw):
     return ""
 
 def getDfn(raw):
-    # receives the raw english string and returns a list with 
-    # couples of the form (class, defition string)
-    # returns the empty list if there is no definition (or
-    # the formatting of the definition is unorthodox)
+    """receives the raw english string and returns a list with 
+    couples of the form (class, defition string)
+    returns the empty list if there is no definition (or
+    the formatting of the definition is unorthodox)"""
 
     result = []
 
@@ -128,6 +139,7 @@ def getDfn(raw):
         
 
 def processText(textRaw, title):
+    print(title)
 
     # get english string
     englishRaw = getEnglish(textRaw)
@@ -137,21 +149,14 @@ def processText(textRaw, title):
     pronRaw = getPron(englishRaw)
     #print(pronRaw)
 
-    # get definition raw strings
-    # list of couples (class, def), where class in {noun, verb, etc}
+    # get definition: list of 2-tuples (class, def),
+    # where class in {noun, verb, etc}
     dfnRaw = getDfn(englishRaw)
-    for tpl in dfnRaw:
-        if (len(tpl) != 0):
-            (cl, df) = tpl
-            print(title)
-            print(cl)
-            print("---hmm---")
-            print(df)
 
+    # pronunciation: raw string -> (american ipa, britsh ipa)
+    pron = cleanPron(pronRaw)
 
-    # pronunciation: raw string -> nice string
-
-    # definition: raw string -> json
+    # definition: raw string -> 
 
     # construct final json
 

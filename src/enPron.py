@@ -2,7 +2,7 @@ import re
 
 def cleanPron(raw):
     """Receives raw pronunciation string.
-    Returns tuple (str: US IPA, str: UK IPA).
+    Returns list of tuples (str: Region, str: IPA, str: ogg add).
     String is empty in case IPA is not found.
     If no region is stated, returns same IPA for both"""
 
@@ -14,6 +14,7 @@ def cleanPron(raw):
 
     isUS = False
     isUK = False
+    areBothSame = False
     res = ""
     for line in raw.splitlines():
         result = re.search(r"/[^/]*/", line)
@@ -22,18 +23,36 @@ def cleanPron(raw):
         res = result.group()
 
         for pat in american:
-            if (line.find(pat) != -1):
+            if (line.find(pat) != -1 and isUS == False):
+                # select only first
                 isUS = True
                 strUS = res
         for pat in british:
-            if (line.find(pat) != -1):
+            if (line.find(pat) != -1 and isUK == False):
+                # select only first
                 isUK = True
                 strUK = res
 
         if ( (not isUK) and (not isUS) ):
             strUK = res
             strUS = res
+            areBothSame = True
 
-    print(strUS) 
+    strUS = strUS.strip()
+    strUK = strUK.strip()
+   
+    """ # for debugging
+    if(len(strUS) != 0):
+        print("US: " + strUS) 
+    if(len(strUK) != 0):
+        print("UK: " + strUK)
+    if(len(strUS) != 0 or len(strUK) != 0):
+        print()
+    """
+    res = []
+    if(isUS or areBothSame):
+        res.append(("US", strUS, ""))
+    if(isUK or areBothSame):
+        res.append(("UK", strUK, ""))
 
-
+    return res

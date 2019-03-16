@@ -2,7 +2,7 @@ import re
 import string
 def getEnglish(raw):
     """If no English part in text, returns empty string
-    otherwise, returns string with raw english."""
+    Otherwise, returns string with raw english."""
 
     substr = "==English=="
     startPos = raw.find(substr)

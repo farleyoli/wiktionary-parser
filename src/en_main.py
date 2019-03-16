@@ -2,9 +2,9 @@ import xml.sax
 import string
 import re
 import os
-from enPron import cleanPron
-from enDfn import cleanDfn
-from enPre import getEnglish, getPron, getDfn
+from en_pron import clean_pron
+from en_dfn import clean_dfn
+from en_pre import get_english, get_pron, get_dfn
 
 class WiktionaryXMLHandler(xml.sax.ContentHandler):
     def __init__(self):
@@ -29,7 +29,7 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
 
     def endElement(self, name):
         if name == "text":
-            processText(self.textContent, self.title.strip())
+            process_text(self.textContent, self.title.strip())
             self.textContent = ""
 
 
@@ -41,29 +41,28 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
 
         
 
-def processText(textRaw, title):
+def process_text(text_raw, title):
 
-    englishRaw = getEnglish(textRaw)
-    #print (englishRaw)
+    english_raw = get_english(text_raw)
+    #print (english_raw)
 
-    if (len(englishRaw) == 0):
+    if (len(english_raw) == 0):
         # no need to add words that do not exist
         return ""
 
     print(title)
 
-    pronRaw = getPron(englishRaw)
-    #print(pronRaw)
+    pron_raw = get_pron(english_raw)
+    #print(pron_raw)
 
-    dfnRaw = getDfn(englishRaw)
+    dfn_raw = get_dfn(english_raw)
 
-    pron = cleanPron(pronRaw)
+    pron = clean_pron(pron_raw)
     #print(pron)
 
-    # definition: raw string (one for each class) -> 
-    #      (ancestor, [dfn, [exs], [quotes]])
-    for raw in dfnRaw:
-        dfn = cleanDfn(raw)
+    dfn = []
+    for raw in dfn_raw:
+        dfn.append(clean_dfn(raw[1]))
 
     # construct final json
 

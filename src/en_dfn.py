@@ -1,4 +1,4 @@
-def cleanDfn(raw):
+def clean_dfn(raw):
     """Returns (ancestor, dfn),
     where      dfn = [content, dfn] or [],
            content = [explanation, exs] 
@@ -9,6 +9,6 @@ def cleanDfn(raw):
     # TODO: Think MORE about the data structure here!! 
     # including its relation to json TODO
 
-    print(raw[1])
+    print(raw)
 
     return "hue"

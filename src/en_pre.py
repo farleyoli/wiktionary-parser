@@ -69,7 +69,7 @@ def get_dfn(raw):
 
     result = []
 
-    class_of_words = ["Noun", "Verb", "Adjective", "Adverb", "Pronoun", 
+    class_of_words = ["Noun", "Proper noun", "Verb", "Adjective", "Adverb", "Pronoun", 
             "Preposition", "Conjuction", "Article", "Interjection"]
     # Add "Particle" class? Perhaps later
 
@@ -99,4 +99,3 @@ def get_dfn(raw):
             result.append((cl , raw[start_pos:]))
 
     return result
-

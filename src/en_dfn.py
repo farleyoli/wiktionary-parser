@@ -27,7 +27,7 @@ def is_example(line):
 
 def is_quote(line):
     """Receives line string (possibly with initial sharps), and 
-    returns true iff it is an quote sentence.
+    returns true iff it is a quote sentence.
     """
     line = line.strip()
     line = line.strip("#")
@@ -47,29 +47,66 @@ def is_definition(line):
         return False
     return True
 
+
+def sub_bracket_content(line, fn):
+    """The method fn receives a list of strings and returns a string.
+    This method works by passing the elements of each {{x1|x2|...}} as a list
+    to fn and substituting {{x1|x2|...}} with the output of fn in 
+    line (and returning it).
+    """
+    def is_in_interval(i, lst):
+        for (x,y) in lst:
+            if i >= x and i < y:
+                return True
+        return False
+
+    def get_interval(i, lst):
+        for (x,y) in lst:
+            if i>= x and i < y:
+                return (x,y)
+        return -1
+
+    retv = "" # return value
+    pattern = re.compile('{{[^{}]*}}')
+    iterator = pattern.finditer(line)
+    match_positions = []
+    initial_positions = []
+
+    for match in iterator:
+        match_positions.append(match.span())
+        initial_positions.append(match.span()[0])
+
+    for i, c in enumerate(line):
+        if i in initial_positions:
+            x,y = get_interval(i, match_positions)
+            retv +=  fn( line[x+2:y-2].split("|") ) 
+        if is_in_interval(i, match_positions):
+            continue
+        retv += c
+
+    return retv
+    
 def clean_html(line):
     """Appropriately cleans up html present in line, according to the tags.
     This is a provisory and rudimentary method and it is probably breaking
     something."""
-    #TODO: improve and possibly make faster
 
-    #todebug = "HUEHUEHUE"
     todebug = ""
     
     # html comments
-    line = re.sub(r"<!--[^<>]*-->", "", line)
+    line = re.sub(r"<!--[^<>]*-->", todebug, line)
 
     # we delete inner content here
-    tags = [r"ref", r"i"]
+    tags = [r"ref"]
     for tag in tags:
         line = re.sub(r"<" + tag + r"[^<>]*>[^<>]*</" + tag + r">", todebug, line)
         line = re.sub(r"<" + tag + r"[^<>]*/>", todebug, line)
-    
+   
     # we only delete the tag here
     # self-closing tag
-    tags = [r"sup", r"sub"]
+    tags = [r"sup", r"sub", r"i"]
     for tag in tags:
-        line = re.sub(r"<[^<>]*" + tag + r">", todebug, line)
+        line = re.sub(r"<[^<>]*" + tag + r"[^<>]*>", todebug, line)
 
     return line
 
@@ -85,7 +122,7 @@ def clean_common(line):
     line = clean_html(line)
 
     # eliminate patterns not needed
-    patterns = ["[[","]]", "'''"]
+    patterns = ["[[","]]", "'''", "''"]
     for pattern in patterns:
         line = line.replace(pattern, "")
 

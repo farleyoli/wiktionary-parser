@@ -1,11 +1,11 @@
+import re
+
 def get_head(raw):
     # TODO
     return ""
 
 def count_sharp(line):
-    """Receives a string, and returns
-    the number of initial sharps in the string,
-    """
+    """Returns the number of initial sharps in the string."""
     result = 0
     for c in line:
         if c != "#":
@@ -14,8 +14,9 @@ def count_sharp(line):
     return result
 
 def is_example(line):
-    """Receives a string (possibly with initial sharps), and 
-    returns true iff it is an example sentence."""
+    """Receives line string (possibly with initial sharps), and 
+    returns true iff it is an example sentence.
+    """
     line = line.strip()
     line = line.strip("#")
     if "ux" not in line:
@@ -25,8 +26,9 @@ def is_example(line):
     return False
 
 def is_quote(line):
-    """Receives a string (possibly with initial sharps), and 
-    returns true iff it is an quote sentence."""
+    """Receives line string (possibly with initial sharps), and 
+    returns true iff it is an quote sentence.
+    """
     line = line.strip()
     line = line.strip("#")
     if line[0] == "*":
@@ -34,6 +36,7 @@ def is_quote(line):
     return False
 
 def is_definition(line):
+    """Returns true iff line string (eventually without #s) represents a definition."""
     if is_example(line) or is_quote(line):
         return False
     if count_sharp(line) == 0:
@@ -44,20 +47,66 @@ def is_definition(line):
         return False
     return True
 
+def clean_html(line):
+    """Appropriately cleans up html present in line, according to the tags.
+    This is a provisory and rudimentary method and it is probably breaking
+    something."""
+    #TODO: improve and possibly make faster
+
+    #todebug = "HUEHUEHUE"
+    todebug = ""
+    
+    # html comments
+    line = re.sub(r"<!--[^<>]*-->", "", line)
+
+    # we delete inner content here
+    tags = [r"ref", r"i"]
+    for tag in tags:
+        line = re.sub(r"<" + tag + r"[^<>]*>[^<>]*</" + tag + r">", todebug, line)
+        line = re.sub(r"<" + tag + r"[^<>]*/>", todebug, line)
+    
+    # we only delete the tag here
+    # self-closing tag
+    tags = [r"sup", r"sub"]
+    for tag in tags:
+        line = re.sub(r"<[^<>]*" + tag + r">", todebug, line)
+
+    return line
+
+
+def clean_common(line):
+    """Common pre-processing to clean definition and example lines."""
+    line = line.strip()
+    line = line.strip("#")
+
+    if len(line) == 0:
+        return line
+
+    line = clean_html(line)
+
+    # eliminate patterns not needed
+    patterns = ["[[","]]", "'''"]
+    for pattern in patterns:
+        line = line.replace(pattern, "")
+
+    return line
+
+    # strip html
+
 def clean_dfn_line(line):
     # TODO
+    line = clean_common(line)
     return line
 
 def clean_exm_line(line):
     # TODO
+    line = clean_common(line)
     return line
 
 def get_idx_of_elems_of_lst(i, no_shs, category):
-    """Receives an index i, a list with the number of sharps of each line and 
-    a list with the category (definition, quote, example or other) of each line
-    and returns a list with pairs: the (ordered) indexes of the parallel contents 
-    (ie, elements which will be in the same dfn list and not nested deeper in
-     other dfns); """
+    """Returns a list with the (ordered) indexes of the contents parallel to no_shs[i].
+    (ie, elements which will be in the same dfn list and not nested deeper in other dfns)
+    """
     ans = []
 
     if len(category) == 0 or category[i] != "dfn": # is not definition, so list is empty
@@ -74,8 +123,9 @@ def get_idx_of_elems_of_lst(i, no_shs, category):
     return ans
         
 def delete_nosharp(raw):
-    """Receives string with text and returns the same string,
-    but without lines that do not start with a #"""
+    """Returns the raw string (assumed to be a unique line),
+    but without lines that do not start with a #.
+    """
     result = ""
     for line in raw.splitlines():
         if len(line) == 0 or line[0] != "#":
@@ -84,9 +134,9 @@ def delete_nosharp(raw):
     return result
 
 def get_examples(i, no_shs, category, lines):
-    """Receives index i, no_shs and array with categories, and returns
-    a list with index of examples relative to no_shs[1]. Returns the empty
-    list if no_shs[i] is not a definition."""
+    """ Returns a list with examples relative to no_shs[i]. Returns the empty
+    list if no_shs[i] is not a definition.
+    """
     if category[i] != "dfn":
         return []
     ans = []
@@ -106,11 +156,11 @@ def get_examples(i, no_shs, category, lines):
         examples = []
     return examples
 
-def fill_dfn (lines, no_shs, dfn, category):
-
-    def fill_dfn_aux (i, lines, no_shs, dfn):
+def get_dfn (lines, no_shs, category):
+    """Returns the root dfn obtained from lines."""
+    def fill_dfn (i, lines, no_shs, dfn):
         idx_of_elems = get_idx_of_elems_of_lst(i, no_shs, category)
-        print (idx_of_elems)
+        #print (idx_of_elems)
         for j in idx_of_elems: # idx_of_elems can't be zero
             content = clean_dfn_line(lines[j][no_shs[j]:])
             examples = get_examples(j, no_shs, category, lines)
@@ -122,14 +172,17 @@ def fill_dfn (lines, no_shs, dfn, category):
             obj = {"c" : content, "d" : new_dfn, "e" : examples, "q": []}
             dfn.append(obj)
             if j != len(no_shs) - 1 and no_shs[j+1] > no_shs[j]:
-                fill_dfn_aux(j+1, lines, no_shs, new_dfn)
+                fill_dfn(j+1, lines, no_shs, new_dfn)
 
-    fill_dfn_aux (0, lines, no_shs, dfn) 
+    dfn = []
+    fill_dfn (0, lines, no_shs, dfn) 
+    return dfn
 
 def get_category(line):
     """Returns "dfn" if line is a definition,
                "exm" if line is an example, and
-               "quo" is line is a quote."""
+               "quo" is line is a quote.
+    """
     if is_example(line):
         return "exm"
     elif is_quote(line):
@@ -139,12 +192,13 @@ def get_category(line):
     return ""  # unkown category
 
 def clean_dfn(raw):
-    """Returns {head, dfn},
+    """Returns {head, dfn}, where
                dfn = (list of {content, dfn}) or []
-           content = {explanation, examples}
+           content = {explanation, examples, quotes}
           examples = list of examples (str)
     and     quotes = list of quotes (str) (to do later)
-    see definition of head (ex: head(tested) = test)"""
+    see definition of head. (ex: head(tested) = test)
+    """
 
     head = get_head(raw)
 
@@ -159,12 +213,8 @@ def clean_dfn(raw):
     #category = list(filter(None.__ne__, category)) 
 
 
-    print(no_shs)
-    print(category)
-    
-    dfn = []
     # write recursive function
-    fill_dfn(lines, no_shs, dfn, category)
+    dfn = get_dfn(lines, no_shs, category)
     print(dfn)
 
     return "hue"

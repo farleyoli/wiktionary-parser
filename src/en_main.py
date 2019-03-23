@@ -40,11 +40,9 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
             self.title += content
 
         
-
 def process_text(text_raw, title):
-
+    """This method processses one wiktionary page each time it is called.""" 
     english_raw = get_english(text_raw)
-    #print (english_raw)
 
     if (len(english_raw) == 0):
         # no need to add words that do not exist
@@ -53,23 +51,15 @@ def process_text(text_raw, title):
     print(title)
 
     pron_raw = get_pron(english_raw)
-    #print(pron_raw)
-
     dfn_raw = get_dfn(english_raw)
-
     pron = clean_pron(pron_raw)
-    #print(pron)
 
     dfn = []
     for raw in dfn_raw:
         dfn.append(clean_dfn(raw[1]))
 
-    # construct final json
+    # process json
 
-    # add json to json dict file
-
-
-    print()
 
 def main():
     fileAddress = os.path.abspath('../..') + "/test.xml"

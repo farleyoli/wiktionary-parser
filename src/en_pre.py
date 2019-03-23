@@ -1,8 +1,9 @@
 import re
 import string
 def get_english(raw):
-    """If no English part in text, returns empty string
-    Otherwise, returns string with raw english."""
+    """If there is no English part in text, returns empty string.
+    Otherwise, returns string with raw english.
+    """
 
     substr = "==English=="
     start_pos = raw.find(substr)
@@ -32,9 +33,9 @@ def get_english(raw):
 
 def get_pron(raw):
     """Receives the raw english string and returns the raw
-    pronunciation string.
-    Returns the empty string if there is no pronunciation (or
-    the formatting of the pronunciation is unorthodox)."""
+    pronunciation string. Returns the empty string if there is no pronunciation 
+    (or the formatting of the pronunciation is unorthodox).
+    """
 
     # when there are multiple etymologies, they may use four =,
     is_four_e = False
@@ -63,9 +64,10 @@ def get_pron(raw):
 
 def get_dfn(raw):
     """Receives the raw english string and returns a list with 
-    couples of the form (class, defition string).
+    pairs of the form (class, defition string).
     Returns the empty list if there is no definition (or
-    the formatting of the definition is unorthodox)."""
+    the formatting of the definition is unorthodox).
+    """
 
     result = []
 

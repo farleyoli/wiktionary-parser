@@ -114,7 +114,8 @@ def clean_html(line):
 def clean_common(line):
     """Common pre-processing to clean definition and example lines."""
     line = line.strip()
-    line = line.strip("#")
+    line = line.strip("#:")
+    line = line.strip()
 
     if len(line) == 0:
         return line
@@ -133,12 +134,29 @@ def clean_common(line):
 def clean_dfn_line(line):
     # TODO
     line = clean_common(line)
+
     return line
+
 
 def clean_exm_line(line):
     # TODO
     line = clean_common(line)
-    return line
+
+    def fn(lst):
+        if not "ux" in lst or len(lst) < 2:
+            return ""
+        lst.remove("ux")
+        if "en" in lst:
+            if len(lst) < 2:
+                return ""
+            lst.remove("en")
+        #lst.sort(key = lambda s: -len(s))
+        #print(lst)
+        #print("huehue")
+
+        return ", ".join(lst)
+
+    return sub_bracket_content(line, fn)
 
 def get_idx_of_elems_of_lst(i, no_shs, category):
     """Returns a list with the (ordered) indexes of the contents parallel to no_shs[i].

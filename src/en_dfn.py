@@ -135,7 +135,22 @@ def clean_dfn_line(line):
     # TODO
     line = clean_common(line)
 
-    return line
+    def fn(lst):
+        if not "lb" in lst or len(lst) < 2:
+            return ""
+        lst.remove("lb")
+        if "en" in lst:
+            if len(lst) < 2:
+                return ""
+            lst.remove("en")
+
+        ans = ", ".join(lst)
+        ans = ans + ")"
+        ans = "(" + ans
+        return ans
+
+
+    return sub_bracket_content(line, fn)
 
 
 def clean_exm_line(line):

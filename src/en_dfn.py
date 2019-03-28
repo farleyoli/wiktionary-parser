@@ -1,9 +1,5 @@
 import re
 
-def get_head(raw):
-    # TODO
-    return ""
-
 def count_sharp(line):
     """Returns the number of initial sharps in the string."""
     result = 0
@@ -85,6 +81,44 @@ def sub_bracket_content(line, fn):
         retv += c
 
     return retv
+
+def get_head(raw):
+    ans = []
+    #print(raw)
+    raw = raw.strip()
+    if (not "{{head" in raw):
+        return ["self"]
+
+    patterns = ["plural of", "en-third-person singular of", "abbreviation of",
+            "en-past of", "inflection of", "present participle of", 
+            "misspelling of", "en-comparative of"]
+
+    not_needed = ["lang=en", "pres", "part", "nocat=1"]
+
+    def fn(lst):
+        for pattern in patterns + not_needed:
+            if (pattern in lst):
+                lst.remove(pattern)
+            if len(lst) < 1:
+                return ""
+        lst.sort(key = lambda s: -len(s))
+        return lst[0]
+
+
+    for line in raw.splitlines():
+        for pattern in patterns:
+            start_index = line.find("{{" + pattern)
+            end_index = line.find("}}") + 2
+            if start_index < 0 or end_index < 2 or start_index >= end_index -2:
+                continue
+            head = sub_bracket_content(line[start_index:end_index], fn)
+            ans.append(head)
+
+    ans = list(filter(lambda a: len(a) != 0, ans))
+    if len(ans) == 0:
+        return ["self"]
+    else:
+        return ans
     
 def clean_html(line):
     """Appropriately cleans up html present in line, according to the tags.
@@ -132,7 +166,6 @@ def clean_common(line):
     # strip html
 
 def clean_dfn_line(line):
-    # TODO
     line = clean_common(line)
 
     def fn(lst):
@@ -154,7 +187,6 @@ def clean_dfn_line(line):
 
 
 def clean_exm_line(line):
-    # TODO
     line = clean_common(line)
 
     def fn(lst):
@@ -285,7 +317,7 @@ def clean_dfn(raw):
 
     # write recursive function
     dfn = get_dfn(lines, no_shs, category)
-    print(dfn)
+    #print(dfn)
 
     return "hue"
 

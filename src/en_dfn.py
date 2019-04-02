@@ -169,9 +169,29 @@ def clean_dfn_line(line):
     line = clean_common(line)
 
     def fn(lst):
-        if not "lb" in lst or len(lst) < 2:
+        patterns = {"plural of": "plural of",
+                "en-third-person singular of" : "third-person singular of",
+                "abbreviation of" : "abbreviation of",
+                "en-past of" : "past of",
+                "inflection of" : "inflection of",
+                "present participle of" : "present participle of", 
+                "misspelling of" : "mispelling of",
+                "en-comparative of": "comparative of"}
+
+        not_needed = ["lang=en", "pres", "part", "nocat=1"]
+
+        if len(lst) < 2:
             return ""
-        lst.remove("lb")
+
+        for nn in not_needed:
+            if nn in lst:
+                lst.remove(nn)
+
+        for key in patterns:
+            if key in lst:
+                lst.remove(key)
+                return (patterns[key] + " " + lst[0] if len(lst) == 1 else "")
+
         if "en" in lst:
             if len(lst) < 2:
                 return ""
@@ -197,10 +217,6 @@ def clean_exm_line(line):
             if len(lst) < 2:
                 return ""
             lst.remove("en")
-        #lst.sort(key = lambda s: -len(s))
-        #print(lst)
-        #print("huehue")
-
         return ", ".join(lst)
 
     return sub_bracket_content(line, fn)
@@ -317,7 +333,7 @@ def clean_dfn(raw):
 
     # write recursive function
     dfn = get_dfn(lines, no_shs, category)
-    #print(dfn)
+    print(dfn)
 
     return "hue"
 

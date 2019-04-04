@@ -2,6 +2,7 @@ import xml.sax
 import string
 import re
 import os
+import json
 from en_pron import clean_pron
 from en_dfn import clean_dfn
 from en_pre import get_english, get_pron, get_dfn
@@ -12,6 +13,7 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
         self.counter = 0
         self.textContent = ""
         self.title = ""
+        self.dict = []
 
     def startElement(self, name, attrs):
         if name == "text":
@@ -29,8 +31,11 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
 
     def endElement(self, name):
         if name == "text":
-            process_text(self.textContent, self.title.strip())
+            term = process_text(self.textContent, self.title.strip())
             self.textContent = ""
+            if term != -1:
+                #print(term)
+                self.dict.append(term)
 
 
     def characters(self, content):
@@ -39,6 +44,13 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
         if self.isTitle:
             self.title += content
 
+    def endDocument(self):
+        self.dict = sorted(self.dict, key=lambda k: k['t'])
+        fileAddress = os.path.abspath('../..') + "/test.txt"
+        with open(fileAddress, 'w') as outfile:  
+            json.dump({"dict" : self.dict}, outfile)
+        #print(self.dict)
+
         
 def process_text(text_raw, title):
     """This method processses one wiktionary page each time it is called.""" 
@@ -46,9 +58,9 @@ def process_text(text_raw, title):
 
     if (len(english_raw) == 0):
         # no need to add words that do not exist
-        return ""
+        return -1
 
-    print(title)
+    #print(title)
 
     pron_raw = get_pron(english_raw)
     dfn_raw = get_dfn(english_raw)
@@ -58,7 +70,11 @@ def process_text(text_raw, title):
     for raw in dfn_raw:
         dfn.append(clean_dfn(raw[1]))
 
-    # process json
+    pair = { 't' : title, 'd': dfn }
+
+    return pair
+
+    #print(dfn)
 
 
 def main():

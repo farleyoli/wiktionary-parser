@@ -1,5 +1,7 @@
 import re
 
+# TODO: properly doc functions
+
 def count_sharp(line):
     """Returns the number of initial sharps in the string."""
     result = 0
@@ -87,7 +89,7 @@ def get_head(raw):
     #print(raw)
     raw = raw.strip()
     if (not "{{head" in raw):
-        return ["self"]
+        return ["s"]
 
     patterns = ["plural of", "en-third-person singular of", "abbreviation of",
             "en-past of", "inflection of", "present participle of", 
@@ -116,7 +118,7 @@ def get_head(raw):
 
     ans = list(filter(lambda a: len(a) != 0, ans))
     if len(ans) == 0:
-        return ["self"]
+        return ["s"]
     else:
         return ans
     
@@ -178,14 +180,23 @@ def clean_dfn_line(line):
                 "misspelling of" : "mispelling of",
                 "en-comparative of": "comparative of"}
 
-        not_needed = ["lang=en", "pres", "part", "nocat=1"]
+        not_needed = ["lang=en", "pres", "part", "nocat=",
+                "lb", "from=", "ver=", "noshow="]
+
+        eliminate = ["defdate", "senseid"]
 
         if len(lst) < 2:
             return ""
 
+        for elem in eliminate:
+            if elem in lst:
+                return ""
+
+        # can be made faster, but should be good enough
         for nn in not_needed:
-            if nn in lst:
-                lst.remove(nn)
+            for elem in lst:
+                if nn in elem:
+                    lst.remove(elem)
 
         for key in patterns:
             if key in lst:
@@ -196,6 +207,8 @@ def clean_dfn_line(line):
             if len(lst) < 2:
                 return ""
             lst.remove("en")
+
+        #TODO: deal with 'and', 'of', etc
 
         ans = ", ".join(lst)
         ans = ans + ")"
@@ -333,7 +346,7 @@ def clean_dfn(raw):
 
     # write recursive function
     dfn = get_dfn(lines, no_shs, category)
-    print(dfn)
+    #print(dfn)
 
-    return "hue"
+    return { "h" : head, "d": dfn }
 

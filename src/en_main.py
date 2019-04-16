@@ -1,11 +1,19 @@
+#!/usr/bin/env python3
+
 import xml.sax
 import string
 import re
 import os
 import json
+import argparse # use this!!
 from en_pron import clean_pron
 from en_dfn import clean_dfn
 from en_pre import get_english, get_pron, get_dfn
+
+# TODO: External sorting (current program took up one third of
+# my 4 GB ram)
+# TODO: Avoid regex when possible: its use is probably what's
+# making the program take so long to finish
 
 class WiktionaryXMLHandler(xml.sax.ContentHandler):
     def __init__(self):
@@ -35,6 +43,8 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
             self.textContent = ""
             if term != -1:
                 #print(term)
+                self.counter += 1
+                print(self.counter)
                 self.dict.append(term)
 
 
@@ -43,6 +53,7 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
             self.textContent += content
         if self.isTitle:
             self.title += content
+            print(self.title)
 
     def endDocument(self):
         self.dict = sorted(self.dict, key=lambda k: k['t'])
@@ -60,7 +71,6 @@ def process_text(text_raw, title):
         # no need to add words that do not exist
         return -1
 
-    #print(title)
 
     pron_raw = get_pron(english_raw)
     dfn_raw = get_dfn(english_raw)
@@ -76,9 +86,26 @@ def process_text(text_raw, title):
 
     #print(dfn)
 
+def is_valid_file(parser, arg):
+    if not os.path.exists(arg):
+        parser.error("The file %s does not exist!" % arg)
+    else:
+        return open(arg, 'r')  # return an open file handle
+
+
+def process_args(parser):
+    parser.add_argument("-p", dest="filename", required=True, 
+            help="Path to wiktionary dump file.", metavar="FILE",
+            type=(lambda x: is_valid_file(parser, x)))
+    args = parser.parse_args()
+    return args
 
 def main():
-    fileAddress = os.path.abspath('../..') + "/test.xml"
+    parser = argparse.ArgumentParser()
+    args = process_args(parser)
+
+    #fileAddress = os.path.abspath('../..') + "/enwiktionary-20190301-pages-articles.xml"
+    fileAddress = args.filename
 
     # handle XML so we can parse <text>s manually
     parser = xml.sax.make_parser()

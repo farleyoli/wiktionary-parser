@@ -29,6 +29,10 @@ def is_quote(line):
     """
     line = line.strip()
     line = line.strip("#")
+
+    if len(line) < 1:
+        return False
+
     if line[0] == "*":
         return True
     return False
@@ -41,6 +45,8 @@ def is_definition(line):
         return False
     line = line.strip()
     line = line.strip("#")
+    if len(line) < 1:
+        return False
     if line[0] == "*" or line[0] == ":":
         return False
     return True

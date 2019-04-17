@@ -16,12 +16,13 @@ from en_pre import get_english, get_pron, get_dfn
 # making the program take so long to finish
 
 class WiktionaryXMLHandler(xml.sax.ContentHandler):
-    def __init__(self):
+    def __init__(self, output_path):
         self.isText = False
         self.counter = 0
         self.textContent = ""
         self.title = ""
         self.dict = []
+        self.output_path = output_path
 
     def startElement(self, name, attrs):
         if name == "text":
@@ -57,9 +58,12 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
 
     def endDocument(self):
         self.dict = sorted(self.dict, key=lambda k: k['t'])
-        fileAddress = os.path.abspath('../..') + "/test.txt"
-        with open(fileAddress, 'w') as outfile:  
-            json.dump({"dict" : self.dict}, outfile)
+        #fileAddress = os.path.abspath('../..') + "/test.txt"
+        #with open(self.output_path, 'w') as outfile:  
+        with self.output_path as outfile:
+            #json.dump({"dict" : self.dict}, outfile)
+            json.dump(self.dict, outfile)
+
         #print(self.dict)
 
         
@@ -88,15 +92,28 @@ def process_text(text_raw, title):
 
 def is_valid_file(parser, arg):
     if not os.path.exists(arg):
-        parser.error("The file %s does not exist!" % arg)
+        parser.error("The file %s does not exist." % arg)
     else:
         return open(arg, 'r')  # return an open file handle
 
+def can_we_write_in_path(parser, arg):
+    if os.path.exists(arg):
+        #the file is there
+        return open(arg, 'w')
+    elif os.access(os.path.dirname(arg), os.W_OK):
+        #the file does not exists but write privileges are given
+        return open(arg, 'w')
+    return parser.error("We cannot write a new file in path %s." % arg)
+
+
 
 def process_args(parser):
-    parser.add_argument("-p", dest="filename", required=True, 
+    parser.add_argument("-i", dest="filename", required=True, 
             help="Path to wiktionary dump file.", metavar="FILE",
             type=(lambda x: is_valid_file(parser, x)))
+    parser.add_argument("-o", dest="output", required=True, 
+            help="Path to output json file.", metavar="FILE",
+            type=lambda x: can_we_write_in_path(parser, x))
     args = parser.parse_args()
     return args
 
@@ -106,12 +123,12 @@ def main():
 
     #fileAddress = os.path.abspath('../..') + "/enwiktionary-20190301-pages-articles.xml"
     fileAddress = args.filename
+    output_path = args.output
 
     # handle XML so we can parse <text>s manually
     parser = xml.sax.make_parser()
-    parser.setContentHandler(WiktionaryXMLHandler())
+    parser.setContentHandler(WiktionaryXMLHandler(output_path))
     parser.parse(fileAddress)
 
 if ( __name__ == "__main__"):
     main()
-

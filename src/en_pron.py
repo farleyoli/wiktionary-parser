@@ -18,7 +18,7 @@ def clean_pron(raw):
     res = ""
     for line in raw.splitlines():
         result = re.search(r"/[^/]*/", line)
-        if (not result):
+        if not result:
             continue
         res = result.group()
 

@@ -66,7 +66,7 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
 
         #print(self.dict)
 
-        
+
 def process_text(text_raw, title):
     """This method processses one wiktionary page each time it is called.""" 
     english_raw = get_english(text_raw)

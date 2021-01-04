@@ -3,7 +3,7 @@ import re
 # TODO: properly doc functions
 
 def count_sharp(line):
-    """Returns the number of initial sharps in the string."""
+    """Returns the number of initial sharps in the string line."""
     result = 0
     for c in line:
         if c != "#":
@@ -12,8 +12,8 @@ def count_sharp(line):
     return result
 
 def is_example(line):
-    """Receives line string (possibly with initial sharps), and 
-    returns true iff it is an example sentence.
+    """Receives a line string (possibly with initial sharps), and 
+    returns true iff line is an example sentence.
     """
     line = line.strip()
     line = line.strip("#")
@@ -25,7 +25,7 @@ def is_example(line):
 
 def is_quote(line):
     """Receives line string (possibly with initial sharps), and 
-    returns true iff it is a quote sentence.
+    returns true iff line is a quote sentence.
     """
     line = line.strip()
     line = line.strip("#")
@@ -127,14 +127,13 @@ def get_head(raw):
         return ["s"]
     else:
         return ans
-    
+
 def clean_html(line):
     """Appropriately cleans up html present in line, according to the tags.
     This is a provisory and rudimentary method and it is probably breaking
     something."""
 
     todebug = ""
-    
     # html comments
     line = re.sub(r"<!--[^<>]*-->", todebug, line)
 
@@ -143,7 +142,6 @@ def clean_html(line):
     for tag in tags:
         line = re.sub(r"<" + tag + r"[^<>]*>[^<>]*</" + tag + r">", todebug, line)
         line = re.sub(r"<" + tag + r"[^<>]*/>", todebug, line)
-   
     # we only delete the tag here
     # self-closing tag
     tags = [r"sup", r"sub", r"i"]
@@ -241,8 +239,7 @@ def clean_exm_line(line):
     return sub_bracket_content(line, fn)
 
 def get_idx_of_elems_of_lst(i, no_shs, category):
-    """Returns a list with the (ordered) indexes of the contents parallel to no_shs[i].
-    (ie, elements which will be in the same dfn list and not nested deeper in other dfns)
+    """Returns a list with the (ordered) indices of the contents parallel to no_shs[i] (ie, elements which will be in the same dfn list and not nested deeper in other dfns)
     """
     ans = []
 
@@ -330,8 +327,9 @@ def get_category(line):
 
 def clean_dfn(raw):
     """Returns {head, dfn}, where
+    
                dfn = (list of {content, dfn}) or []
-           content = {explanation, examples, quotes}
+           content = dict{explanation, examples, quotes}
           examples = list of examples (str)
     and     quotes = list of quotes (str) (to do later)
     see definition of head. (ex: head(tested) = test)

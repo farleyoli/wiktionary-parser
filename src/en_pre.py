@@ -11,25 +11,16 @@ def get_english(raw):
         return ""
     start_pos = start_pos + 11
 
-    # FM: four minus
-    is_there_fm = bool(re.search("[^-]----[^-]", raw[start_pos:]))  
-    if(is_there_fm):
-        end_pos = re.search("[^-]----[^-]", raw[start_pos:]).start()+1
-        end_pos += start_pos
-        #print("(there is at least another lang)")
-        return raw[start_pos:end_pos]
-
-
-    # add redundancy
-    # (DE: double equal)
-    is_there_de = bool(re.search("[^=]==[^=]", raw[start_pos:]))
-    if(is_there_de):
-        end_pos = re.search("[^=]==[^=]", raw[start_pos:]).start()+1
-        end_pos += start_pos
-        #print("(there is at least another lang)")
-        return raw[start_pos:end_pos]
-    # english goes until end of string
-    return raw[start_pos:]
+    p = re.search(r"[^=]==[a-zA-Z]+==[^=]", raw[start_pos:])
+    if p is None:
+        end_pos = -1
+    else:
+        end_pos = p.start()
+    if end_pos != -1:
+        end_pos = end_pos + start_pos
+    #print("start_pos = " + str(start_pos) + ", end_pos = " + str(end_pos))
+    #print(raw[start_pos:end_pos])
+    return raw[start_pos:end_pos]
 
 def get_pron(raw):
     """Receives the raw english string and returns the raw

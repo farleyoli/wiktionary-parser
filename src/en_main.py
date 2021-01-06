@@ -45,7 +45,7 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
             if term != -1:
                 #print(term)
                 self.counter += 1
-                print(self.counter)
+                #print(self.counter)
                 self.dict.append(term)
 
 
@@ -54,7 +54,7 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
             self.textContent += content
         if self.isTitle:
             self.title += content
-            print(self.title)
+            #print(self.title)
 
     def endDocument(self):
         self.dict = sorted(self.dict, key=lambda k: k['t'])

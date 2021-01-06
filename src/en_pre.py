@@ -1,8 +1,8 @@
 import re
 import string
 def get_english(raw):
-    """If there is no English part in text, returns empty string.
-    Otherwise, returns string with raw english.
+    """If there is no English part in the Wiktionary entry,
+    returns empty string. Otherwise, returns string with raw english.
     """
 
     substr = "==English=="
@@ -23,35 +23,35 @@ def get_english(raw):
     return raw[start_pos:end_pos]
 
 def get_pron(raw):
-    """Receives the raw english string and returns the raw
-    pronunciation string. Returns the empty string if there is no pronunciation 
+    """Receives the raw english string and returns the raw pronunciation
+    string. Returns the empty string if there is no pronunciation
     (or the formatting of the pronunciation is unorthodox).
     """
 
-    # when there are multiple etymologies, they may use four =,
-    is_four_e = False
+    m = re.search(r"=+Pronunciation=+", raw)
+    if m is None:
+        return ""
 
-    substr = "====Pronunciation===="
-    start_pos = raw.find(substr)
-    if start_pos != -1:
-        start_pos += len(substr)
-        is_four_e = True
+    beg = int(m.start())
+    end = int(m.end())
+    start_pos = end
+    #print(raw[beg:end])
+    new_raw = raw[end:]
+    no_equal = (len(raw[beg:end]) - len("Pronunciation"))/2
 
-    if (not is_four_e):
-        substr = "===Pronunciation==="
-        start_pos = raw.find(substr)
-        if start_pos == -1:
-            return ""
-        start_pos += len(substr)
+    p_bef = p_aft = r'=' * no_equal
 
-    # it stands to reason that the pronunciation is not going to be
-    # the last = * = type of structure in file
-    is_there_fm = bool(re.search("===", raw[start_pos:]))  
-    if(is_there_fm):
-        end_pos = re.search("===", raw[start_pos:]).start()
-        end_pos += start_pos
-        return raw[start_pos:end_pos]
-    return ""
+    m = re.search(r"[^=]"+ p_bef + r"[a-zA-Z\s0-9]+" + p_aft + r"[^=]", new_raw)
+    if m is None:
+        end_pos = -1
+    else:
+        end_pos = m.start()
+    if end_pos != -1:
+        end_pos = end_pos + start_pos
+
+    #print(raw[start_pos:end_pos])
+    return raw[start_pos:end_pos]
+
 
 def get_dfn(raw):
     """Receives the raw english string and returns a list with 

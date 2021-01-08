@@ -1,0 +1,531 @@
+{{also|Love|lové|lóve|løve|lóvé|лове}}
+==English==
+{{phrasebook|en}}
+{{wikipedia|love}}
+
+===Pronunciation===
+* {{a|RP|GA}} {{IPA|en|/lʌv/}}
+* {{audio|en|En-uk-love.ogg|Audio (RP)}}
+* {{audio|en|En-us-love.ogg|Audio (GA)}}
+* {{a|Northern England|Ireland}} {{IPA|en|/lʊv/}}
+* {{rhymes|en|ʌv}}
+
+===Etymology 1===
+{{root|en|ine-pro|*lewbʰ-|id=love}}
+From {{inh|en|enm|love}}, {{m|enm|luve}}, from {{inh|en|ang|lufu}}, from {{inh|en|gem-pro|*lubō}}, from {{der|en|ine-pro|*lewbʰ-|t=love, care, desire}}.
+
+The closing-of-a-letter sense is presumably a truncation of ''With love'' or the like.
+
+The verb is from {{inh|en|enm|loven}}, {{m|enm|lovien}}, from {{inh|en|ang|lufian|t=to love}}, from the noun {{m|ang|lufu|t=love}}, see above.
+
+Eclipsed non-native {{noncog|en|amour|t=love}}, borrowed from {{noncog|fr|amour|t=love}}.
+
+====Noun====
+[[Image:Baby monkey breastfeeding (Rajasthan, 2017).jpg|thumb|[[primates]] need '''love''']]
+{{en-noun|~}}
+
+# {{lb|en|uncountable}} Strong affection.
+## A profound and caring [[affection]] towards someone.
+##: {{ux|en|A mother’s '''love''' is not easily shaken.}}
+##: {{ux|en|My husband’s '''love''' is the most important thing in my life.}}
+##* '''1674''', {{w|John Milton}}, ''{{w|Paradise Lost}}'':
+##*: He on his side / Leaning half-raised, with looks of cordial '''love''' / Hung over her enamoured.
+##* '''2014''', S. Hidden, ''Jewish, Christian, and Islamic Mystical Perspectives on the '''Love''' of God'' ({{ISBN|1137443324}})
+## [[affectionate|Affectionate]], [[benevolent]] [[concern]] or [[care]] for other [[people]] or [[being]]s, and for their [[well-being]].
+##* '''1864''', ''Utilitarianism Explained and Exemplified in Moral and Political Government''<!-- 2014 reprint:({{ISBN|1108071422}}-->:
+##*: The '''love''' of your neighbor as yourself, is expressly given as the definition and test of Charity,—not alms-giving—and this '''love''' is [...] the highest of all the Divine commands[.]<!--the work's later "love of God" seems like sense 1.1 instead-->
+## A feeling of intense [[attraction]] towards someone.
+##: {{ux|en|I have never been in '''love''' as much as I have with you.}}
+##* {{quote-book|en|year=1898|author={{w|Winston Churchill (novelist)|Winston Churchill}}| title={{w|The Celebrity}}|chapter=8| passage=The humor of my proposition appealed more strongly to Miss Trevor than I had looked for, and from that time forward she became her old self again; for, even after she had conquered her '''love''' for the Celebrity, the mortification of having been jilted by him remained.}}
+## A deep or abiding [[liking]] for something; an [[enthusiasm]] for something.
+##: {{ux|en|My '''love''' of cricket knows no bounds.}}
+##* '''2012''', Philip Auerswald, ''The Coming Prosperity'' ({{ISBN|0199930848}}):
+##*: For three decades, the average number of miles driven by US motorists increased steadily. Then, in 2007, that steady climb was suddenly halted. [...] What magic caused Americans to temper their longstanding '''love''' of the open road?
+# {{lb|en|countable}} A person who is the object of romantic feelings; a [[darling]], a [[sweetheart]], a [[beloved]].
+#* {{RQ:Spenser Epithalamion}}
+#*: Open the temple gates unto my '''love'''.
+#* '''1596-97''', {{w|William Shakespeare}}, ''[[w:The Merchant of Venice|The Merchant of Venice]]'', Act III Scene 2
+#*: O '''love''', dispatch all business, and be gone!
+#* {{quote-book|en|year=1969|author=The Dubliners|title=Dirty Old Town|passage=I met my '''love''' by the gasworks wall.}}
+# {{lb|en|colloquial|Commonwealth}} {{non-gloss definition|A term of friendly address, regardless of feelings.}}
+#: {{ux|en|Hello '''love''', how can I help you?}}
+# A thing, activity{{,}} etc which is the object of one's deep liking or enthusiasm.
+#* '''1997''' March, "Faces of Today's Black Woman", in ''Ebony'', volume 52, number 5, page 96:
+#*: But it wasn't until [Theresa M. Claiborne] went to ROTC training camp at the University of California at Berkeley that she discovered that flying was her first '''love'''. "Pilots talk about getting bit by the flying bug," she says. "I thought, This is heaven."
+# {{lb|en|euphemistic}} Sexual desire; attachment based on sexual attraction.
+#* '''2013''', Ronald Long, ''Men, Homosexuality, and the Gods'', Routledge ({{ISBN|9781136568237}}), page 3:
+#*: The prospect that their cherished Greeks would have countenanced, much less honored, a '''love''' between men that expressed itself carnally, however, was not so easily assimilated.
+# {{lb|en|euphemistic}} Sexual activity.
+#* '''1986''', Ben Elton & al., ''{{w|Blackadder II}}'', "[[w:Bells (Blackadder)|Bells]]":
+#*: —What think you, my lord, of... '''love'''?
+#*: —You mean ‘[[rumpy-pumpy]]’.
+# An instance or episode of being [[in love]]; a [[love affair]].
+#* '''2014''', E. L. Todd, ''Then Came Absolution'' ({{ISBN|150282342X}}):
+#*: Maybe it was just a summer '''love''', something with no future.
+# {{non-gloss definition|Used as the [[closing]], before the [[signature]], of a [[letter]], especially between good friends or family members, or by the young.}}
+# {{alt case|en|Love||personification of love}}.
+#* {{circa|1810}}, Samuel Johnson (in ''The Works of Samuel Johnson''):
+#*: At busy hearts in vain '''love's''' arrows fly; [...]
+# {{lb|en|obsolete}} A thin [[silk]] [[material]].
+#* '''1664''', {{w|Robert Boyle}}, ''Experiments and Considerations Touching Colours,{{...}}''
+#*: Such a kind of transparency, as that of a Sive, a piece of Cyprus, or a '''Love'''-Hood.
+# A [[climb]]ing [[plant]], ''[[Clematis vitalba]]''.
+
+=====Synonyms=====
+* {{sense|darling|sweetheart}} {{l|en|baby}}, {{l|en|darling}}, {{l|en|lover}}, {{l|en|pet}}, {{l|en|sweetheart}}, {{l|en|honey}}, {{l|en|love bird}}; see also [[Thesaurus:sweetheart]]
+* {{sense|term of address}} {{l|en|mate}}, {{l|en|lover}}, {{l|en|darling}}, {{l|en|sweetie}}, {{l|en|sweetheart}}; see also [[Thesaurus:lover]]
+* {{sense|sexual desire}} {{l|en|aphrodisia}}, {{l|en|carnality}}; see also [[Thesaurus:lust]]
+* {{sense|sexual activity}} {{l|en|coitus}}, {{l|en|sex}}, {{l|en|the beast with two backs}}; see also [[Thesaurus:copulation]]
+* {{sense|instance of being in love}} {{l|en|romance}}
+
+=====Antonyms=====
+* {{sense|strong affection}} [[hate]], [[hatred]], [[angst]]; [[malice]], [[spite]]
+* {{sense|absence of love}} [[indifference]]
+
+=====Translations=====
+{{see translation subpage|Noun}}
+
+====Verb====
+{{en-verb}}
+
+# {{lb|en|usually|transitive|sometimes|_|intransitive|stative}} To have a strong [[affection]] for (someone or something).
+#* '''1918''', {{w|Edgar Rice Burroughs}}, [[w:The Land That Time Forgot (novel)|The Land That Time Forgot]] Chapter VI
+#*: I wanted to take her in my arms and tell her how I '''loved''' her, and had taken her hand from the rail and started to draw her toward me when Olson came blundering up on deck with his bedding.
+#* '''2013''' February 26, {{w|Pink (singer)|Pink}} and {{w|Nate Ruess}}, ''{{w|Just Give Me a Reason}}'':
+#*: Just give me a reason, / just a little bit's enough, / just a second we're not broken, just bent / and we can learn to '''love''' again.
+#: {{ux|en|I '''love''' my spouse. &nbsp; [[I love you|I '''love''' you]]!}}
+# {{lb|en|transitive}} To need, [[thrive]] on.
+#: {{ux|en|Mold '''loves''' moist, dark places.}}
+# {{lb|en|transitive}} To be strongly inclined towards something; an emphatic form of ''[[like]]''.
+#: {{ux|en|I '''love''' walking barefoot on wet grass;&nbsp; I'd '''love''' to join the team;&nbsp; I '''love''' what you've done with your hair}}
+# {{lb|en|usually|transitive|sometimes|_|intransitive}} To [[care]] deeply about, to be [[dedicated]] to (someone or something).
+#* John 3:16
+#*: For God so '''loved''' the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.
+#* Matthew: 37-38
+#*: You shall '''love''' the Lord your God with your whole heart, and your whole mind, and your whole soul; you shall '''love''' your neighbor as yourself.
+#* {{quote-journal|en|date=2013-06-21|author={{w|Oliver Burkeman}}
+|volume=189|issue=2|page=27|magazine={{w|The Guardian Weekly}}
+|title=[http://www.guardian.co.uk/technology/2013/may/10/conscious-computing-twitter-facebook-google The tao of tech]
+|passage=The dirty secret of the internet is that all this distraction and interruption is immensely profitable. Web companies like to boast about {{...}} offering services that let you {{...}} "share the things you '''love''' with the world" and so on. But the real way to build a successful online business is to be better than your rivals at undermining people's control of their own attention.}}
+# {{lb|en|transitive}} To derive [[delight]] from a fact or situation.
+#: {{ux|en|I '''love''' the fact that the coffee shop now offers fat-free chai latte.}}
+# {{lb|en|transitive|euphemistic}} To [[sex|have sex]] with (perhaps from {{m|en|make love}}).
+#: {{ux|en|I wish I could '''love''' her all night long.}}
+
+=====Conjugation=====
+{{en-conj|lov|e}}
+
+=====Synonyms=====
+* {{sense|have a strong affection for}} {{l|en|adore}}, {{l|en|cherish}}; see also [[Thesaurus:love]]
+* {{sense|have sexual intercourse with}} {{l|en|enjoy}}, {{l|en|go to bed with}}, {{l|en|sleep with}}; see also [[Thesaurus:copulate with]]
+
+=====Antonyms=====
+* [[hate]], [[despise]]
+
+=====Derived terms=====
+{{der4|en|title=Terms derived from the noun or verb ''love''
+|all's fair in love and war
+|cupboard love
+|first love
+|in love
+|I love you
+|fall in love
+|lady love
+|love affair
+|love at first sight
+|[[love bird]], [[lovebird]]
+|[[love bite]], [[lovebite]]
+|love bomb
+|love bug
+|lovebunny
+|love child
+|loveday
+|loved-up
+|love egg
+|love feast
+|love game
+|love grass
+|love handle
+|love-hate
+|love-in
+|love-in-a-mist
+|love interest
+|love is blind
+|loveless
+|love life
+|lovely
+|love-making
+|love match
+|love nest
+|love potion
+|lover
+|love rat
+|lovertine
+|love seat
+|loveship
+|love-shyness
+|lovesick
+|lovesome
+|love song
+|lovestone
+|love story
+|love tap
+|love toy
+|love triangle
+|loveworthy
+|lovey-dovey
+|loving kindness
+|loyal love
+|make love
+|no love lost
+|platonic love
+|puppy love
+|tough love
+|true love
+|unrequited love
+|zouk love
+|love on
+}}
+
+=====Related terms=====
+{{rel3|en
+|lov
+|luv
+|wuv
+}}
+
+=====Translations=====
+{{see translation subpage|Verb}}
+
+====See also====
+* [[charity]]
+
+===Etymology 2===
+{{root|en|ine-pro|*lewbʰ-|id=love}}
+From {{der|en|enm|loven}}, {{m|enm|lovien}}, from {{der|en|ang|lofian|t=to praise, exalt, appraise, value}}, from {{der|en|gem-pro|*lubōną|t=to praise, vow}}, from {{m|gem-pro|*lubą|t=praise}}, from {{der|en|ine-pro|*lewbʰ-|t=to like, love, desire}}, {{m|ine-pro|*lewbʰ-}}.
+
+====Verb====
+{{en-verb}}
+
+# {{lb|en|transitive|obsolete|or|UK|_|dialectal}} To [[praise]]; [[commend]].
+# {{lb|en|transitive|obsolete|or|UK|_|dialectal}} To praise as of [[value]]; [[prize]]; set a [[price]] on.
+
+===Etymology 3===
+Said by some to be from the idea that when one does a thing “for love”, that is for no monetary gain, the word “love” implies "nothing". The previously held belief that it originated from the {{der|en|fr|-}} term {{m|fr|œuf|l’œuf|t=the egg}}, due to its shape, is no longer widely accepted, though compare the use of [[duck]] (reputed to be short for duck's egg) for a zero score at cricket.
+
+====Noun====
+{{en-noun|-}}
+
+# {{lb|en|racquet sports|billiards}} [[zero|Zero]], no score.
+#: ''So that’s fifteen-'''love''' to Kournikova.''
+#* '''2013''', {{w|Paul McNamee}}, ''Game Changer: My Tennis Life''
+#*: The next day [[w:Andre Agassi|Agassi]] came back from two sets to '''love''' down to beat Courier in five sets.
+
+=====Translations=====
+{{trans-top|zero}}
+* Albanian: {{t+|sq|zero}}
+* Catalan: {{t+|ca|res}}, {{t+|ca|zero|m}}
+* Danish: {{t+|da|nul}}
+* Dutch: {{t+|nl|nul}}
+* Esperanto: {{t+|eo|nulo}}
+* Finnish: {{t+|fi|nolla}}
+* French: {{t+|fr|zéro}}
+* German: {{t+|de|null}}
+* Hebrew: {{t+|he|אפס|m|tr=éfes}}
+* Hungarian: {{t+|hu|null}}, {{t+|hu|semmi}}
+* Italian: {{t+|it|zero}}
+* Latin: {{t|la|nulli}}
+* Macedonian: {{t+|mk|нула|f}}
+* Norwegian: {{t+|no|null}}
+{{trans-mid}}
+* Polish: {{t+|pl|zero}}, {{t+|pl|jajo}}
+* Portuguese: {{t+|pt|zero}}
+* Russian: {{t+|ru|ноль|m}}
+* Scottish Gaelic: {{t|gd|neoni}}
+* Serbo-Croatian:
+*: Cyrillic: {{t|sh|ну̏ла|f}}
+*: Latin: {{t+|sh|nȕla|f}}
+* Slovak: {{t+|sk|nula|f}}
+* Spanish: {{t+|es|cero}}, {{t+|es|nada}}
+* Swedish: {{t+|sv|noll}}
+* Tagalog: {{t+|tl|wala}}
+* Tamil: {{t+|ta|காதல்}}, {{t+|ta|அன்பு}}
+* Vietnamese: {{t+|vi|không}}
+* West Frisian: {{t+|fy|nul}}
+{{trans-bottom}}
+
+===References===
+* {{R:OneLook}}
+* {{R:Keywords 21st}}
+* {{R:Century 1911}}
+
+===Anagrams===
+* {{anagrams|en|a=elov|levo|levo-|velo-|vole|voël}}
+
+[[Category:English endearing terms]]
+[[Category:English terms of address]]
+[[Category:en:Anemoneae tribe plants]]
+[[Category:en:Emotions]]
+[[Category:en:Love]]
+[[Category:en:Sex]]
+[[Category:en:Zero]]
+
+----
+
+==Czech==
+
+===Pronunciation===
+* {{IPA|cs|/ˈlɔvɛ/}}
+
+===Etymology===
+Borrowed from {{bor|cs|rom|love}}.
+
+===Noun===
+{{cs-noun|f-p}}
+
+# {{lb|cs|slang}} [[money]]
+
+====Declension====
+{{rfinfl|cs|noun}}
+
+====Synonyms====
+* See also {{l|cs|prachy}}
+
+===Noun===
+{{head|cs|noun form|g=m}}
+
+# {{inflection of|cs|lov||voc|s}}
+
+===Further reading===
+* {{R:KNLA}}
+
+[[Category:cs:Money]]
+
+----
+
+==Danish==
+
+===Pronunciation===
+* {{IPA|da|/ˈlɔːvə/|[ˈlɔːʋə]|[ˈlɔːʊ]}}
+
+===Etymology 1===
+From {{der|da|gml|lōve}}, from {{der|da|gem-pro|*galaubô}}, cognate with {{cog|de|Glaube}}.
+
+====Noun====
+{{head|da|noun|g=c}}
+
+# {{lb|da|obsolete}} [[trust]], [[faith]]
+#: only in the phrase {{l|da|på tro og love||solemnly}}
+
+====References====
+* {{R:DDO|love,1}}
+
+===Etymology 2===
+From {{der|da|non|lofa}}, from {{inh|da|gem-pro|*galubōną|*(ga)lubōną}}, cognate with {{cog|sv|lova||to promise; to praise}}, {{cog|de|loben||to praise}}, {{m|de|geloben||to vow}}, {{cog|nl|loven||to praise}}.
+
+====Verb====
+{{head|da|verb|past tense|lovede|past participle|lovet}}
+
+# to [[promise]]
+# {{lb|da|solemn}} to [[praise]]
+
+====Inflection====
+{{da-conj|lov||er|ede|h|et}}
+
+====References====
+* {{R:DDO|love,2}}
+* {{R:DDO|love,3}}
+
+===Etymology 3===
+See {{nonlemma}}
+
+====Noun====
+{{head|da|noun form|g=c}}
+
+# {{inflection of|da|lov||indef|p|nocat=1}}
+
+----
+
+==Dutch==
+
+===Pronunciation===
+* {{audio|nl|Nl-love.ogg|Audio}}
+
+===Verb===
+{{head|nl|verb form}}
+
+# {{nl-verb form of|n=sg|t=pres|m=subj|loven}}
+
+===Anagrams===
+* {{anagrams|nl|velo|voel}}
+
+----
+
+==French==
+
+===Verb===
+{{head|fr|verb form}}
+
+# {{inflection of|fr|lover||1|//3|s|pres|indc//subj|;|2|s|impr}}
+
+===Anagrams===
+* {{anagrams|fr|vélo|vole|volé}}
+
+----
+
+==Friulian==
+
+===Etymology===
+From {{inh|fur|la|lupa}}, feminine of {{m|la|lupus}}. Compare {{cog|vec|lova}}, {{cog|fr|louve}}.
+
+===Pronunciation===
+{{rfp|fur}}
+
+===Noun===
+{{fur-noun|f|pl=lovis}}
+
+# [[she-wolf]]
+
+====Related terms====
+* {{l|fur|lôf}}
+
+----
+
+==Hunsrik==
+
+===Pronunciation===
+* {{IPA|hrx|/ˈloːvə/}}
+
+===Verb===
+{{head|hrx|verb}}
+
+# to [[praise]]
+
+===Further reading===
+* [https://hunsriqueanoriograndense.wordpress.com/dicionario-werterbuch/ Online Hunsrik Dictionary]
+
+----
+
+==Inari Sami==
+
+===Numeral===
+{{head|smn|numeral}}
+
+# [[ten]]
+
+----
+
+==Middle Dutch==
+
+===Noun===
+{{head|dum|noun form|head=lōve}}
+
+# {{inflection of|dum|lof||dat|s}}
+
+----
+
+==Middle English==
+<!--this Middle English entry was created using Template:new enm entry-->
+
+===Alternative forms===
+* {{alter|enm|luve|lufæ|lufe}}
+
+===Etymology===
+{{dercat|enm|gmw-pro|gem-pro|ine-pro|inh=2}}
+From {{inh|enm|ang|lufu}}
+
+===Pronunciation===
+* {{IPA|enm|/ˈluv(ə)/}}
+
+===Noun===
+{{enm-noun}}
+
+# [[#English|love]]
+
+====Descendants====
+* {{desc|en|love}}
+* {{desc|sco|luve}}, {{l|sco|lufe}}
+
+[[Category:enm:Emotions]]
+[[Category:enm:Love]]
+
+----
+
+==Norwegian Bokmål==
+
+===Etymology===
+From {{der|nb|non|lofa}}.
+
+===Verb===
+{{head|nb|verb|imperative|lov|present tense|lover|simple past and past participle|lova|or|lovet|present participle|lovende}}
+
+# to [[praise]]
+
+===Verb===
+{{head|nb|verb|imperative|lov|present tense|lover|simple past|lova|or|lovet|or|lovte|or|lovde|past participle|lova|or|lovet|or|lovt|or|lovd|present participle|lovende}}
+
+# to [[promise]]
+#: (''as an adjective'') ''det '''lovede''' land - the Promised Land''
+
+====Related terms====
+* {{l|nb|løfte}}
+
+===References===
+* {{R:The Bokmål Dictionary}}
+
+[[Category:nb:Emotions]]
+
+----
+
+==Norwegian Nynorsk==
+
+===Verb===
+{{head|nn|verb|present tense|lovar|or|lover|past tense|lova|or|lovde|past participle|lova|or|lovt|or|lovd|present participle|lovande|imperative|lov}}
+
+# {{alternative form of|nn|lova}}
+
+===Noun===
+{{nn-noun-m1}}
+
+# {{alternative form of|nn|lóve}}
+
+===Anagrams===
+* {{anagrams|nn|a=elov|vole}}
+
+----
+
+==Romani==
+
+===Noun===
+{{head|rom|noun}}
+
+# {{plural of|rom|lovo}}
+# [[money]]
+
+====Descendants====
+* {{desc|fr|lové|bor=1}}
+* {{desc|hu|lóvé|bor=1}}
+* {{desc|ro|lovea|bor=1}}
+* {{desc|ru|лавэ́|bor=1}}
+* {{desc|sco|lowie|bor=1}}
+* {{desc|sh|-|bor=1}}
+** {{desc|sh|ло́ва|sclb=1}}
+** {{desc|sh|lóva|sclb=1}}
+* {{desc|sk|lóve|bor=1}}
+
+{{c|rom|Money}}
+
+----
+
+==Serbo-Croatian==
+
+===Noun===
+{{sh-noun-form}}
+
+# {{inflection of|sh|lov||voc|s}}
+
+===Verb===
+{{sh-verb-form}}
+
+# {{inflection of|sh|loviti||3|p|pres}}
+

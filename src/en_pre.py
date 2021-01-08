@@ -54,7 +54,7 @@ def get_pron(raw):
 
 
 def get_dfn(raw):
-    """Receives the raw english string and returns a list with 
+    """Receives the raw english string and returns a list with
     pairs of the form (class, defition string).
     Returns the empty list if there is no definition (or
     the formatting of the definition is unorthodox).
@@ -62,33 +62,30 @@ def get_dfn(raw):
 
     result = []
 
-    class_of_words = ["Noun", "Proper noun", "Verb", "Adjective", "Adverb", "Pronoun", 
-            "Preposition", "Conjuction", "Article", "Interjection"]
-    # Add "Particle" class? Perhaps later
+    class_of_words = ["Noun", "Proper noun", "Verb", "Adjective", "Adverb",
+                      "Pronoun", "Preposition", "Conjuction", "Article",
+                      "Interjection"]
 
-    for cl in class_of_words:
-        # when there are multiple etymologies, they may use four =,
-        is_four_e = False
+    re_group = "=+(" + "|".join(class_of_words) + ")=+";
 
-        substr = "====" + cl + "===="
-        start_pos = raw.find(substr)
-        if start_pos != -1:
-            start_pos += len(substr)
-            is_four_e = True
+    p = re.compile(re_group)
 
-        if(not is_four_e):
-            substr = "===" + cl + "==="
-            start_pos = raw.find(substr)
-            if start_pos == -1:
-                continue
-            start_pos += len(substr)
+    matches = p.finditer(raw)
 
-        is_there_e = bool(re.search("==", raw[start_pos:]))   # E: equal
-        if(is_there_e):
-            end_pos = re.search("==", raw[start_pos:]).start()
-            end_pos += start_pos
-            result.append((cl, raw[start_pos:end_pos]))
+    for m in matches:
+        word = raw[m.start():m.end()]
+        no_equals = 0;
+        for letter in word:
+            if letter == "=":
+                no_equals += 1
+        idt = no_equals / 2
+        sub_p = r"[^=]={1," + str(idt) + r"}[a-zA-Z0-9\s]+={1," + str(idt) + r"}[^=]"
+        sub_m = re.search(sub_p, raw[m.end():])
+        if sub_m is None:
+            end_pos = -1
         else:
-            result.append((cl , raw[start_pos:]))
+            end_pos = m.end() + sub_m.start()
+        result.append((word.strip("="), raw[m.end():end_pos]))
 
+    print(result)
     return result

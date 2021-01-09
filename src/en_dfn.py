@@ -1,7 +1,5 @@
 import re
 
-# TODO: properly doc functions
-
 def count_sharp(line):
     """Returns the number of initial sharps in the string line."""
     result = 0
@@ -152,7 +150,10 @@ def clean_html(line):
 
 
 def clean_common(line):
-    """Common pre-processing to clean definition and example lines."""
+    """Common pre-processing to clean definition and example lines. Some
+    examples would be given by eliminating [[patterns such as these]] from
+    Wiktionary which are not needed in general outside of it.
+    """
     line = line.strip()
     line = line.strip("#:")
     line = line.strip()
@@ -172,6 +173,12 @@ def clean_common(line):
     # strip html
 
 def clean_dfn_line(line):
+    """Clean definition lines. Some
+    examples would be given by eliminating [[patterns such as these]] from
+    Wiktionary which are not needed in general outside of it.
+    The general goal is to make the string readable in a pure text
+    environment.
+    """
     line = clean_common(line)
 
     def fn(lst):
@@ -224,6 +231,12 @@ def clean_dfn_line(line):
 
 
 def clean_exm_line(line):
+    """Clean example lines. Some
+    examples would be given by eliminating [[patterns such as these]] from
+    Wiktionary which are not needed in general outside of it.
+    The general goal is to make the string readable in a pure text
+    environment.
+    """
     line = clean_common(line)
 
     def fn(lst):
@@ -255,7 +268,7 @@ def get_idx_of_elems_of_lst(i, no_shs, category):
                 ans.append(j)
 
     return ans
-        
+
 def delete_nosharp(raw):
     """Returns the raw string (assumed to be a unique line),
     but without lines that do not start with a #.
@@ -327,7 +340,7 @@ def get_category(line):
 
 def clean_dfn(raw):
     """Returns {head, dfn}, where
-    
+
                dfn = (list of {content, dfn}) or []
            content = dict{explanation, examples, quotes}
           examples = list of examples (str)

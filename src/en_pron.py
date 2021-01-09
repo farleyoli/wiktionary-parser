@@ -4,11 +4,14 @@ def clean_pron(raw):
     """Receives raw pronunciation string.
     Returns list of tuples (str: Region, str: IPA, str: ogg add).
     String is empty in case IPA is not found.
-    If no region is stated, returns same IPA for both"""
+    If no region is stated, returns same IPA for both.
+    """
+#    print("Raw:")
+#    print(raw)
 
     strUS = ""
     strUK = "" # strings to be returned
-    
+
     american = ["US", "GenAm", "GA"]
     british = ["UK", "RP"]
 
@@ -40,7 +43,7 @@ def clean_pron(raw):
 
     strUS = strUS.strip()
     strUK = strUK.strip()
-   
+
     """ # for debugging
     if(len(strUS) != 0):
         print("US: " + strUS) 
@@ -55,4 +58,10 @@ def clean_pron(raw):
     if(isUK or are_both_same):
         res.append(("UK", strUK, ""))
 
+#    print("Processed:")
+#    for e in res:
+#        for ee in e:
+#            print(ee)
+#    print("------------------------------------------")
     return res
+

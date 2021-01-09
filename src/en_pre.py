@@ -66,7 +66,7 @@ def get_dfn(raw):
                       "Pronoun", "Preposition", "Conjuction", "Article",
                       "Interjection"]
 
-    re_group = "=+(" + "|".join(class_of_words) + ")=+";
+    re_group = "=+(" + "|".join(class_of_words) + ")=+"
 
     p = re.compile(re_group)
 
@@ -74,7 +74,7 @@ def get_dfn(raw):
 
     for m in matches:
         word = raw[m.start():m.end()]
-        no_equals = 0;
+        no_equals = 0
         for letter in word:
             if letter == "=":
                 no_equals += 1
@@ -87,5 +87,4 @@ def get_dfn(raw):
             end_pos = m.end() + sub_m.start()
         result.append((word.strip("="), raw[m.end():end_pos]))
 
-    print(result)
     return result

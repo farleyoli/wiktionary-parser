@@ -21,7 +21,7 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
         self.counter = 0
         self.textContent = ""
         self.title = ""
-        self.dict = []
+        self.dict = {}
         self.output_path = output_path
 
     def startElement(self, name, attrs):
@@ -46,7 +46,8 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
                 #print(term)
                 self.counter += 1
                 #print(self.counter)
-                self.dict.append(term)
+                self.dict[term[0]] = term[1]
+                print(term[0])
 
 
     def characters(self, content):
@@ -57,7 +58,7 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
             #print(self.title)
 
     def endDocument(self):
-        self.dict = sorted(self.dict, key=lambda k: k['t'])
+        #self.dict = sorted(self.dict, key=lambda k: k['t'])
         #fileAddress = os.path.abspath('../..') + "/test.txt"
         #with open(self.output_path, 'w') as outfile:  
         with self.output_path as outfile:
@@ -84,7 +85,7 @@ def process_text(text_raw, title):
     for raw in dfn_raw:
         dfn.append(clean_dfn(raw[1]))
 
-    pair = { 't' : title, 'd': dfn }
+    pair = ( title, dfn )
 
     return pair
 

@@ -1,28 +1,36 @@
-#!/usr/bin/env python3
-
 import xml.sax
 import string
 import re
 import os
 import json
+import string
 import argparse # use this!!
 from en_pron import clean_pron
 from en_dfn import clean_dfn
 from en_pre import get_english, get_pron, get_dfn
 
-# TODO: External sorting (current program took up one third of
-# my 4 GB ram)
-# TODO: Avoid regex when possible: its use is probably what's
-# making the program take so long to finish
-
 class WiktionaryXMLHandler(xml.sax.ContentHandler):
+    def initialize_dicts(self):
+        """Create (new) output json files which correspond to each letter
+        of the alphabet. Beware that files will be overwritten if they
+        already exist (will probably change this later).
+        """
+        alphabet = list(string.ascii_lowercase)
+        alphabet.append('other')
+        d = {}
+        for letter in alphabet:
+            fname = str('../../output_dict/') + letter + '.json'
+            with open(fname, "w") as f:
+                json.dump(d, f)
+
     def __init__(self, output_path):
         self.isText = False
         self.counter = 0
         self.textContent = ""
         self.title = ""
-        self.dict = {}
+        #self.dict = {}
         self.output_path = output_path
+        self.initialize_dicts()
 
     def startElement(self, name, attrs):
         if name == "text":
@@ -46,7 +54,8 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
                 #print(term)
                 self.counter += 1
                 #print(self.counter)
-                self.dict[term[0]] = term[1]
+                #self.dict[term[0]] = term[1]
+                add_term_to_dict(term)
                 print(term[0])
 
 
@@ -62,11 +71,30 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
         #fileAddress = os.path.abspath('../..') + "/test.txt"
         #with open(self.output_path, 'w') as outfile:  
         with self.output_path as outfile:
+            pass
             #json.dump({"dict" : self.dict}, outfile)
-            json.dump(self.dict, outfile)
-
+            #json.dump(self.dict, outfile)
         #print(self.dict)
 
+def get_letter(word):
+    """Return first letter (or other) of word, in order to select the
+    dictionary file to which to add the term.
+    """
+    alphabet = list(string.ascii_lowercase)
+    if word[0] in alphabet:
+        return word[0]
+    return 'other'
+def add_term_to_dict(term):
+    """Add term to the appropriate json dictionary file.
+    """
+    letter = get_letter(term[0])
+    fname = "../../output_dict/" + letter + ".json"
+    #print(fname)
+    with open(fname, "r") as f:
+        dictf = json.load(f)
+    dictf[term[0]] = term[1]
+    with open(fname, "w") as f:
+        json.dump(dictf, f)
 
 def process_text(text_raw, title):
     """This method processses one wiktionary page each time it is called.""" 
@@ -130,6 +158,8 @@ def main():
     parser = xml.sax.make_parser()
     parser.setContentHandler(WiktionaryXMLHandler(output_path))
     parser.parse(fileAddress)
+
+
 
 if ( __name__ == "__main__"):
     main()

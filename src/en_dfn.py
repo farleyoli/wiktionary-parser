@@ -1,5 +1,9 @@
 import re
 
+# TODO: Add support for quotes
+# TODO: Divide dictionary in files based on first letter
+# TODO: Fix heads
+
 def count_sharp(line):
     """Returns the number of initial sharps in the string line."""
     result = 0
@@ -316,7 +320,7 @@ def get_dfn (lines, no_shs, category):
             #else:
             #    examples = []
             new_dfn = []
-            obj = {"c" : content, "d" : new_dfn, "e" : examples, "q": []}
+            obj = {"ctnt" : content, "dfn" : new_dfn, "exs" : examples, "qts": []}
             dfn.append(obj)
             if j != len(no_shs) - 1 and no_shs[j+1] > no_shs[j]:
                 fill_dfn(j+1, lines, no_shs, new_dfn)
@@ -344,7 +348,7 @@ def clean_dfn(raw):
                dfn = (list of {content, dfn}) or []
            content = dict{explanation, examples, quotes}
           examples = list of examples (str)
-    and     quotes = list of quotes (str) (to do later)
+    and     quotes = list of quotes (str)
     see definition of head. (ex: head(tested) = test)
     """
 
@@ -365,5 +369,5 @@ def clean_dfn(raw):
     dfn = get_dfn(lines, no_shs, category)
     #print(dfn)
 
-    return { "h" : head, "d": dfn }
+    return { "head" : head, "dfn": dfn }
 

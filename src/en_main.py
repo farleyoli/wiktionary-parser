@@ -10,6 +10,29 @@ from en_dfn import clean_dfn
 from en_pre import get_english, get_pron, get_dfn
 
 class WiktionaryXMLHandler(xml.sax.ContentHandler):
+    def add_term_to_dict(self, term):
+        """Add term to the appropriate json dictionary file.
+        """
+        lettert = get_letter(term[0])
+        if lettert != self.letter:
+            return
+        fname = "../../output_dict/" + lettert + ".json"
+        #print(fname)
+    ##    with open(fname, "r") as f:
+    ##        dictf = json.load(f)
+    ##    dictf[term[0]] = term[1]
+    ##    with open(fname, "w") as f:
+    ##        json.dump(dictf, f)
+        self.dict[term[0]] = term[1]
+        print(term[0])
+    def get_first_letter(self):
+        """Get initial letter for which to create JSON dictionary from user.
+        """
+        ret = ""
+        while True:
+            ret = raw_input("Which initial letter do you wish to create a JSON dictionary for? (Please input a ascii lowercase or 'other')\n")
+            if ret in list(string.ascii_lowercase) or ret == "other":
+                return ret
     def initialize_dicts(self):
         """Create (new) output json files which correspond to each letter
         of the alphabet. Beware that files will be overwritten if they
@@ -28,9 +51,10 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
         self.counter = 0
         self.textContent = ""
         self.title = ""
-        #self.dict = {}
+        self.dict = {}
         self.output_path = output_path
-        self.initialize_dicts()
+        #self.initialize_dicts()
+        self.letter = self.get_first_letter()
 
     def startElement(self, name, attrs):
         if name == "text":
@@ -55,8 +79,10 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
                 self.counter += 1
                 #print(self.counter)
                 #self.dict[term[0]] = term[1]
-                add_term_to_dict(term)
-                print(term[0])
+                self.add_term_to_dict(term)
+                if self.counter % 10 == 0:
+                    print(self.counter)
+                #print(term[0])
 
 
     def characters(self, content):
@@ -71,9 +97,8 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
         #fileAddress = os.path.abspath('../..') + "/test.txt"
         #with open(self.output_path, 'w') as outfile:  
         with self.output_path as outfile:
-            pass
+            json.dump(self.dict, outfile)
             #json.dump({"dict" : self.dict}, outfile)
-            #json.dump(self.dict, outfile)
         #print(self.dict)
 
 def get_letter(word):
@@ -81,20 +106,9 @@ def get_letter(word):
     dictionary file to which to add the term.
     """
     alphabet = list(string.ascii_lowercase)
-    if word[0] in alphabet:
-        return word[0]
+    if word[0].lower() in alphabet:
+        return word[0].lower()
     return 'other'
-def add_term_to_dict(term):
-    """Add term to the appropriate json dictionary file.
-    """
-    letter = get_letter(term[0])
-    fname = "../../output_dict/" + letter + ".json"
-    #print(fname)
-    with open(fname, "r") as f:
-        dictf = json.load(f)
-    dictf[term[0]] = term[1]
-    with open(fname, "w") as f:
-        json.dump(dictf, f)
 
 def process_text(text_raw, title):
     """This method processses one wiktionary page each time it is called.""" 

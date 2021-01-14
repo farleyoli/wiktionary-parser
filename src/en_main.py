@@ -25,14 +25,18 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
     ##        json.dump(dictf, f)
         self.dict[term[0]] = term[1]
         print(term[0])
+
     def get_first_letter(self):
         """Get initial letter for which to create JSON dictionary from user.
         """
         ret = ""
         while True:
-            ret = raw_input("Which initial letter do you wish to create a JSON dictionary for? (Please input a ascii lowercase or 'other')\n")
+            ret = raw_input("Which initial letter do you wish to " \
+                            "create a JSON dictionary for? (Please "\
+                            "input a ascii lowercase or 'other')\n")
             if ret in list(string.ascii_lowercase) or ret == "other":
                 return ret
+
     def initialize_dicts(self):
         """Create (new) output json files which correspond to each letter
         of the alphabet. Beware that files will be overwritten if they
@@ -80,8 +84,8 @@ class WiktionaryXMLHandler(xml.sax.ContentHandler):
                 #print(self.counter)
                 #self.dict[term[0]] = term[1]
                 self.add_term_to_dict(term)
-                if self.counter % 10 == 0:
-                    print(self.counter)
+                if self.counter % 1 == 0:
+                    print(str(self.counter) + " / 880000")
                 #print(term[0])
 
 
@@ -118,14 +122,19 @@ def process_text(text_raw, title):
         # no need to add words that do not exist
         return -1
 
-
     pron_raw = get_pron(english_raw)
     dfn_raw = get_dfn(english_raw)
     pron = clean_pron(pron_raw)
 
     dfn = []
     for raw in dfn_raw:
-        dfn.append(clean_dfn(raw[1]))
+        cln_dfn = clean_dfn(raw[1])
+        if len(cln_dfn) > 0:
+            dfn.append(clean_dfn(raw[1]))
+
+    if len(dfn) == 0:
+        # no need to add words that have no english definition
+        return -1
 
     pair = ( title, dfn )
 
